@@ -264,8 +264,16 @@ for (let i = 0; i < 2; i++) setTimeout(spawnHeart, i * 500);
 /* =========================================================
    OPEN BUTTON — smooth scroll from cover to memories
    ========================================================= */
-document.getElementById('openButton').addEventListener('click', () => {
-  document.getElementById('memories').scrollIntoView({ behavior: 'smooth' });
+document.getElementById("openButton").addEventListener("click", () => {
+
+    const memories = document.getElementById("memories");
+
+    memories.style.display = "block";
+
+    memories.scrollIntoView({
+        behavior: "smooth"
+    });
+
 });
 
 /* =========================================================
