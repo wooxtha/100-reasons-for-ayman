@@ -276,21 +276,43 @@ document.getElementById("openButton").addEventListener("click", () => {
 
 });
 
+document.getElementById("videoButton").addEventListener("click", () => {
+
+    const video = document.getElementById("video");
+
+    video.style.display = "block";
+
+    video.scrollIntoView({
+        behavior:"smooth"
+    });
+
+});
+
+document.getElementById("chapterButton").addEventListener("click", () => {
+
+    const chapter = document.getElementById("chapterBreak");
+
+    chapter.style.display = "block";
+
+    chapter.scrollIntoView({
+        behavior:"smooth"
+    });
+
+});
+
 /* =========================================================
    CHAPTER BREAK
    ========================================================= */
 
-document.getElementById('reasonsButton').addEventListener('click',()=>{
+document.getElementById("reasonsButton").addEventListener("click", () => {
 
-const reasons=document.getElementById('reasons');
+    const reasons = document.getElementById("reasons");
 
-reasons.style.display='block';
+    reasons.style.display = "block";
 
-reasons.scrollIntoView({
-
-behavior:'smooth'
-
-});
+    reasons.scrollIntoView({
+        behavior: "smooth"
+    });
 
 });
 
