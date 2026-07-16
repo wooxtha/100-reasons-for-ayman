@@ -66,15 +66,46 @@ h1, h2 { font-family: var(--font-hand); margin: 0; }
 .floating-heart {
   position: absolute;
   bottom: -40px;
-  color: var(--rose);
-  opacity: 0.55;
+
+  color: rgba(214, 190, 160, 0.22);
+
+  opacity: 0.18;
+
+  font-weight: 300;
+
+  filter: blur(0.6px);
+
+  pointer-events: none;
+
   animation: floatUp linear forwards;
+
   will-change: transform, opacity;
 }
 @keyframes floatUp {
-  0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
-  10%  { opacity: 0.6; }
-  100% { transform: translateY(-115vh) translateX(var(--drift, 40px)) rotate(25deg); opacity: 0; }
+
+  0% {
+    transform:
+      translateY(0)
+      translateX(0);
+
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.15;
+  }
+
+  80% {
+    opacity: 0.10;
+  }
+
+  100% {
+    transform:
+      translateY(-105vh)
+      translateX(var(--drift));
+
+    opacity: 0;
+  }
 }
 
 /* =========================================================
