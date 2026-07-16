@@ -186,24 +186,24 @@ document.querySelectorAll('.reason-card').forEach((el) => progressObserver.obser
 /* =========================================================
    FLOATING HEARTS BACKGROUND ANIMATION
    ========================================================= */
-const heartsLayer = document.getElementById('heartsLayer');
-const heartSymbols = ['🤍', '♡', '✿'];
+const particlesLayer = document.getElementById('heartsLayer');
+const heartSymbols = ['·', '•'];
 
 function spawnHeart() {
   const heart = document.createElement('span');
   heart.className = 'floating-heart';
   heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
   heart.style.left = `${Math.random() * 100}%`;
-  heart.style.fontSize = `${12 + Math.random() * 16}px`;
-  heart.style.setProperty('--drift', `${(Math.random() - 0.5) * 120}px`);
-  heart.style.animationDuration = `${8 + Math.random() * 6}s`;
+  heart.style.fontSize = `${4 + Math.random() * 5}px`;
+  heart.style.setProperty('--drift', `${(Math.random() - 0.5) * 40}px`);
+  heart.style.animationDuration = `${8 + Math.random() * 10}s`;
   heartsLayer.appendChild(heart);
   setTimeout(() => heart.remove(), 15000);
 }
 
 // Spawn a gentle drift of hearts, not too many at once
-setInterval(spawnHeart, 1400);
-for (let i = 0; i < 4; i++) setTimeout(spawnHeart, i * 500);
+setInterval(spawnHeart, 5000);
+for (let i = 0; i < 2; i++) setTimeout(spawnHeart, i * 500);
 
 /* =========================================================
    OPEN BUTTON — smooth scroll from cover to memories
