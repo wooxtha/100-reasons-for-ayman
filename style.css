@@ -959,9 +959,14 @@ font-size:1.05rem;
 
 }
 
-#reasons{
-
-display:none;
+#memories,
+#video,
+#chapterBreak,
+#reasons,
+#music,
+#letter{
+    display:none;
+}
 
 }
 /* =========================================================
@@ -1078,11 +1083,11 @@ color:var(--rose-deep);
 
 font-family:var(--font-body);
 
-font-size:1.45rem;
+font-size:1.15rem;
 
-line-height:1.9;
+line-height:1.8;
 
-max-width:520px;
+max-width:500px;
 
 margin:0 auto;
 
