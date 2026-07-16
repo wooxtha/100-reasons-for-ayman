@@ -253,24 +253,67 @@
 
 <!-- ================= 3. 100 REASONS SECTION ================= -->
 <section class="reasons" id="reasons">
+
   <div class="section-heading reveal">
     <p class="section-kicker">a running list, still counting</p>
+
     <h2 class="section-title">100 Reasons My Heart Chose You</h2>
+
     <p class="section-sub">
       I started this list thinking it would be hard to fill.
       Turns out the hard part was stopping at one hundred.
     </p>
   </div>
 
-  <div class="reasons-progress" aria-hidden="true">
-    <div class="reasons-progress-bar" id="reasonsProgressBar"></div>
-    <p class="reasons-progress-label"><span id="reasonsSeen">0</span> / 100 read so far</p>
+  <div class="reasons-progress">
+
+      <div
+          class="reasons-progress-bar"
+          id="reasonsProgressBar">
+      </div>
+
+      <p class="reasons-progress-label">
+          <span id="reasonsSeen">1</span>
+          / 100 read so far
+      </p>
+
   </div>
 
-  <!-- Reason cards are generated automatically from the "reasons" list
-       inside script.js — open that file and edit the text there,
-       you never have to touch this HTML section. -->
-  <div class="reasons-grid" id="reasonsGrid"></div>
+  <div class="reason-book">
+
+      <div class="reason-page reveal" id="reasonPage">
+
+          <div
+              class="page-number"
+              id="pageNumber">
+              I
+          </div>
+
+          <p
+             class="reason-text"
+             id="reasonText">
+          </p>
+
+      </div>
+
+      <div class="reason-controls">
+
+          <button
+              class="reason-arrow"
+              id="prevReason">
+              ‹
+          </button>
+
+          <button
+              class="reason-arrow"
+              id="nextReason">
+              ›
+          </button>
+
+      </div>
+
+  </div>
+
 </section>
 
 <!-- ================= 4. MUSIC SPOTLIGHT SECTION ================= -->
