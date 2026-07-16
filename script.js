@@ -136,6 +136,9 @@ const reasonText = document.getElementById("reasonText");
 const reasonPage = document.getElementById("reasonPage");
 const pageNumber = document.getElementById("pageNumber");
 
+const nextReason = document.getElementById("nextReason");
+const prevReason = document.getElementById("prevReason");
+
 const reasonsSeen = document.getElementById("reasonsSeen");
 const progressBar = document.getElementById("reasonsProgressBar");
 
