@@ -314,8 +314,6 @@ document.getElementById("reasonsButton").addEventListener("click", () => {
 
 });
 
-document.getElementById("reasonsButton").addEventListener(...);
-
 document.getElementById("musicButton").addEventListener("click", () => {
 
     const music = document.getElementById("music");
