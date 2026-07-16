@@ -129,25 +129,102 @@ const reasons = [
 ];
 
 /* =========================================================
-   RENDER THE REASON CARDS
+   SCRAPBOOK REASON BOOK
    ========================================================= */
-const reasonsGrid = document.getElementById('reasonsGrid');
-const tilts = [-3, -2, -1, 0, 1, 2, 3];
 
-reasons.forEach((reason, index) => {
-  const num = String(index + 1).padStart(2, '0');
-  const tilt = tilts[index % tilts.length];
+const reasonText = document.getElementById("reasonText");
+const reasonPage = document.getElementById("reasonPage");
+const pageNumber = document.getElementById("pageNumber");
 
-  const card = document.createElement('article');
-  card.className = 'reason-card';
-  card.style.setProperty('--tilt', `${tilt}deg`);
-  card.innerHTML = `
-    <span class="reason-number">#${num}</span>
-    <span class="reason-category">${reason.category}</span>
-    <p class="reason-text">${reason.text}</p>
-  `;
-  reasonsGrid.appendChild(card);
+const nextReason = document.getElementById("nextReason");
+const prevReason = document.getElementById("prevReason");
+prevReason.innerHTML = "‹";
+nextReason.innerHTML = "›";
+
+const reasonsSeen = document.getElementById("reasonsSeen");
+const progressBar = document.getElementById("reasonsProgressBar");
+
+let currentReason = 0;
+
+function updateReason(){
+
+    reasonPage.classList.add("turning");
+
+    setTimeout(()=>{
+
+        reasonText.textContent = reasons[currentReason].text;
+
+        const roman = [
+        "I","II","III","IV","V","VI","VII","VIII","IX","X",
+        "XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX",
+        "XXI","XXII","XXIII","XXIV","XXV","XXVI","XXVII","XXVIII","XXIX","XXX",
+        "XXXI","XXXII","XXXIII","XXXIV","XXXV","XXXVI","XXXVII","XXXVIII","XXXIX","XL",
+        "XLI","XLII","XLIII","XLIV","XLV","XLVI","XLVII","XLVIII","XLIX","L",
+        "LI","LII","LIII","LIV","LV","LVI","LVII","LVIII","LIX","LX",
+        "LXI","LXII","LXIII","LXIV","LXV","LXVI","LXVII","LXVIII","LXIX","LXX",
+        "LXXI","LXXII","LXXIII","LXXIV","LXXV","LXXVI","LXXVII","LXXVIII","LXXIX","LXXX",
+        "LXXXI","LXXXII","LXXXIII","LXXXIV","LXXXV","LXXXVI","LXXXVII","LXXXVIII","LXXXIX","XC",
+        "XCI","XCII","XCIII","XCIV","XCV","XCVI","XCVII","XCVIII","XCIX","C"
+        ];
+
+        pageNumber.textContent = roman[currentReason];
+
+        reasonsSeen.textContent = currentReason+1;
+
+        progressBar.style.setProperty(
+            "--progress",
+            `${((currentReason+1)/reasons.length)*100}%`
+        );
+
+        prevReason.disabled = currentReason===0;
+
+        if(currentReason===reasons.length-1){
+
+            nextReason.innerHTML = "♡";
+
+        }else{
+
+            nextReason.innerHTML = "›";
+
+        }
+
+        reasonPage.classList.remove("turning");
+
+    },180);
+
+}
+
+nextReason.addEventListener("click",()=>{
+
+    if(currentReason<reasons.length-1){
+
+        currentReason++;
+
+        updateReason();
+
+    }else{
+
+        document.getElementById("letter").scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
 });
+
+prevReason.addEventListener("click",()=>{
+
+    if(currentReason>0){
+
+        currentReason--;
+
+        updateReason();
+
+    }
+
+});
+
+updateReason();
 
 /* =========================================================
    SCROLL REVEAL (fades sections + cards in as you scroll)
@@ -160,33 +237,14 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 
-document.querySelectorAll('.reveal, .reason-card').forEach((el) => revealObserver.observe(el));
-
-/* =========================================================
-   REASONS "READ SO FAR" PROGRESS BAR
-   ========================================================= */
-const progressBar = document.getElementById('reasonsProgressBar');
-const seenLabel = document.getElementById('reasonsSeen');
-let seenCount = 0;
-
-const progressObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      seenCount++;
-      const percent = Math.min(100, Math.round((seenCount / reasons.length) * 100));
-      progressBar.style.setProperty('--progress', `${percent}%`);
-      seenLabel.textContent = Math.min(seenCount, reasons.length);
-      progressObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.4 });
-
-document.querySelectorAll('.reason-card').forEach((el) => progressObserver.observe(el));
+document.querySelectorAll('.reveal').forEach((el) =>
+  revealObserver.observe(el)
+);
 
 /* =========================================================
    FLOATING HEARTS BACKGROUND ANIMATION
    ========================================================= */
-const particlesLayer = document.getElementById('heartsLayer');
+const heartsLayer = document.getElementById('heartsLayer');
 const heartSymbols = ['·', '•'];
 
 function spawnHeart() {
@@ -210,6 +268,24 @@ for (let i = 0; i < 2; i++) setTimeout(spawnHeart, i * 500);
    ========================================================= */
 document.getElementById('openButton').addEventListener('click', () => {
   document.getElementById('memories').scrollIntoView({ behavior: 'smooth' });
+});
+
+/* =========================================================
+   CHAPTER BREAK
+   ========================================================= */
+
+document.getElementById('reasonsButton').addEventListener('click',()=>{
+
+const reasons=document.getElementById('reasons');
+
+reasons.style.display='block';
+
+reasons.scrollIntoView({
+
+behavior:'smooth'
+
+});
+
 });
 
 /* =========================================================
@@ -260,4 +336,19 @@ const letterPaper = document.getElementById('letterPaper');
 envelope.addEventListener('click', () => {
   envelope.classList.add('opened');
   letterPaper.classList.add('visible');
+});
+/* =========================================================
+   LOADING SCREEN
+   ========================================================= */
+
+window.addEventListener('load', () => {
+
+  const loader = document.getElementById('loadingScreen');
+
+  setTimeout(() => {
+
+    loader.classList.add('hide');
+
+  }, 3000);
+
 });
