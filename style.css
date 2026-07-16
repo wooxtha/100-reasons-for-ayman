@@ -283,6 +283,12 @@ section { position: relative; z-index: 2; padding: 96px 20px; }
   max-width: 400px;
 }
 
+.section-next{
+    display:flex;
+    justify-content:center;
+    margin:50px 0 20px;
+}
+
 /* =========================================================
    2. PHOTO MEMORY SECTION
    ========================================================= */
