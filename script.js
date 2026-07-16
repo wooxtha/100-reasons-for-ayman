@@ -176,15 +176,21 @@ function updateReason(){
 
         prevReason.disabled = currentReason===0;
 
-        if(currentReason===reasons.length-1){
+       if(currentReason===reasons.length-1){
 
-            nextReason.innerHTML = "♡";
+    nextReason.style.display = "none";
 
-        }else{
+    document.getElementById("musicUnlock").style.display = "flex";
 
-            nextReason.innerHTML = "›";
+}else{
 
-        }
+    nextReason.style.display = "flex";
+
+    nextReason.innerHTML = "›";
+
+    document.getElementById("musicUnlock").style.display = "none";
+
+}
 
         reasonPage.classList.remove("turning");
 
@@ -199,15 +205,7 @@ nextReason.addEventListener("click",()=>{
         currentReason++;
 
         updateReason();
-
-    }else{
-
-        document.getElementById("letter").scrollIntoView({
-            behavior:"smooth"
-        });
-
-    }
-
+}
 });
 
 prevReason.addEventListener("click",()=>{
@@ -316,6 +314,31 @@ document.getElementById("reasonsButton").addEventListener("click", () => {
 
 });
 
+document.getElementById("reasonsButton").addEventListener(...);
+
+document.getElementById("musicButton").addEventListener("click", () => {
+
+    const music = document.getElementById("music");
+
+    music.style.display = "block";
+
+    music.scrollIntoView({
+        behavior:"smooth"
+    });
+
+});
+
+document.getElementById("letterButton").addEventListener("click", () => {
+
+    const letter = document.getElementById("letter");
+
+    letter.style.display = "block";
+
+    letter.scrollIntoView({
+        behavior:"smooth"
+    });
+
+});
 /* =========================================================
    MUSIC PLAYER (floating corner player + inline button)
    ========================================================= */
